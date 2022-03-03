@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, input {
+    font: normal 20pt Arial;
+}
+
+body {
+    background-color: gray;
+}
+
+main {
+    width: min(90vw, 1200px);
+    margin: 5vw auto;
+    padding: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px black;
+    text-align: center;
+}
+
+label {
+    display: block;
+}
+
+input {
+    padding: 5px 20px;
+}
+
+main *:nth-child(n) {
+    margin-bottom: 10px;
+}
