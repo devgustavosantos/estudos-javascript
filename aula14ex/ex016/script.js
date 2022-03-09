@@ -22,13 +22,36 @@ function contar() {
         window.alert('O passo não pode ser menor ou igual a zero!!! Por favor verifique os campos e tente novamente.')
     } else {
         resultado.innerHTML = `Contando...<br>`
-        for (var cont = inicio_num; cont < fim_num || cont == fim_num; cont += passo_num) {
-            /* window.alert(`${cont}`) */
+        
+        if (inicio_num < fim_num){
+            var cont = inicio_num
+            while (cont <= fim_num){
+                var texto = document.createElement('span')
+                texto.innerHTML = `${cont} &#x1F449;`
+                resultado.appendChild(texto)
+                cont += passo_num
+            }
             var texto = document.createElement('span')
             texto.innerHTML = `${cont} &#x1F449;`
             resultado.appendChild(texto)
+            texto.innerHTML = `&#x1F3C1;`
+
+        }else if (inicio_num > fim_num){
+            var cont = inicio_num
+            while (cont >= fim_num){
+                var texto = document.createElement('span')
+                texto.innerHTML = `${cont} &#x1F449;`
+                resultado.appendChild(texto)
+                cont -= passo_num
+            }
+            var texto = document.createElement('span')
+            texto.innerHTML = `${cont} &#x1F449;`
+            resultado.appendChild(texto)
+            texto.innerHTML = `&#x1F3C1;`
+
+        } else {
+            window.alert('O inicio é igual ao fim?! Por favor verifique os campos e tente novamente.')
         }
-        texto.innerHTML = `&#x1F3C1;`
     }
 
 }
