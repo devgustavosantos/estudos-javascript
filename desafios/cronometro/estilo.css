@@ -1,0 +1,50 @@
+body {
+    background: rgb(70, 142, 241);
+    font: normal 15pt Arial;
+}
+
+header {
+    color: white;
+    text-align: center;
+}
+
+section {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+    margin: auto;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+#visor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    color: #484848;
+}
+
+#botoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 250px;
+    margin: auto;
+}
+
+.botao {
+    width: 80px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+#bot-pausar {
+    display: none;
+}
+
+footer {
+    color: white;
+    text-align: center;
+    font-style: italic;
+}
