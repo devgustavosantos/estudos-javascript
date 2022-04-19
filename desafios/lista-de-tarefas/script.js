@@ -1,31 +1,35 @@
-
-
-// // Bloco para validar se é a primera utilização
-// if (localStorage.length == 0) {
-//     var listaDeTafefas = {
-//             1: "Arrumar o quarto",
-//             2: "Cozinhar",
-//             3: "Codar"
-//     }
-//     console.log('Criou agora')
-//     console.log(listaDeTafefas)
-//     listaDeTafefas = JSON.stringify(listaDeTafefas)
-//     localStorage.setItem('lista', listaDeTafefas)
-
-// } else {
-//     console.log('A lista ja foi criada')
-//     let listaDeTafefas = localStorage.getItem('lista')
-//     listaDeTafefas = JSON.parse(listaDeTafefas)
-//     console.log(listaDeTafefas)
+// var listaDeTafefas = {
+//     1: "Arrumar o quarto",
+//     2: "Cozinhar",
+//     3: "Codar"
 // }
 
-var listaDeTafefas = {
-    1: "Arrumar o quarto",
-    2: "Cozinhar",
-    3: "Codar"
+let listaDeTafefas;
+//Função para verificar se é a primeria utilização
+window.addEventListener("load", tarefasSalvas);
+
+function tarefasSalvas(){
+    
+    if (localStorage.length == 0) {
+        listaDeTafefas = {};
+        console.log("Primeira utilização");
+      
+      }else {
+        console.log("Lista já criada")
+        listaDeTafefas = localStorage.getItem("lista");
+        listaDeTafefas = JSON.parse(listaDeTafefas)
+        mostrarTarefas();
+         
+      }
+
 }
 
-// //Função para verificar se é a primeria utilização
+function salvandoNaMemoria(listaParametro) {
+    let listaString = JSON.stringify(listaParametro);
+    localStorage.setItem("lista", listaString)
+
+
+}
 
 
 
@@ -35,10 +39,6 @@ var listaDeTafefas = {
 
 
 
-
-
-
-mostrarTarefas();
 
 // Função para mostrar tarefa
 function mostrarTarefas(){
@@ -95,6 +95,13 @@ function adicionar() {
     txtTarefa = txtTarefa.value;
     console.log(txtTarefa);
 
+    //Validando se a tarefa está vazia
+    let vazia = false;
+    if (txtTarefa.length == 0) {
+        alert('A tarefa está vazia! Por favor verifique e digite novamente.');
+        vazia = true
+    }
+
     // Validando se é uma tarefa repetida
     let repetida = false;
     for(let chave in listaDeTafefas) {
@@ -104,12 +111,14 @@ function adicionar() {
         } 
     } 
 
-    // Guardando a tarefa
-    if (repetida == false) {
+    // Guardando a tarefa no objeto
+    if (repetida == false && vazia == false) {
         let chaveDaTarefa = Object.keys(listaDeTafefas).length + 1;
         listaDeTafefas[`${chaveDaTarefa}`] = txtTarefa;
         console.log(listaDeTafefas);
+        salvandoNaMemoria(listaDeTafefas);
         mostrarTarefas();
+
     }
 }
 
