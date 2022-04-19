@@ -57,7 +57,8 @@ function mostrarTarefas(){
         imagemExcluir.setAttribute("src", "icones/trash-free-icon-font.svg");
         fundoIconeExcluir.appendChild(imagemExcluir);
         
-        fundoIconeExcluir.setAttribute("onclick", "excluirTarefa()")
+        // fundoIconeExcluir.setAttribute("onclick", "excluirTarefa()")
+        adicionarID();
     }
 }
 
@@ -101,11 +102,12 @@ function adicionar() {
         console.log(listaDeTafefas);
         salvandoNaMemoria(listaDeTafefas);
         mostrarTarefas();
+        
     }
 }
 
-// Função para excluir tarefa
-function excluirTarefa(){
+// Função para adicionar ID aos botões
+function adicionarID(){
     //Loop para acessar os itens que estão aparecendo na tela e colocar id em cada um
     let arrayDasTarefas =  document.getElementById("area-das-tarefas").children;
     console.log(arrayDasTarefas)
@@ -113,16 +115,11 @@ function excluirTarefa(){
         //Condição para não modificar itens indesejados do array
         if(cont < arrayDasTarefas.length){
             let tempBotaoExcuir = arrayDasTarefas[cont];
-            //Colocando os ids nos botões excluir
+            //Colocando os ids nos botões
             tempBotaoExcuir.children[2].setAttribute("id", `excluir-${(parseInt(cont)+1)}`);
+            tempBotaoExcuir.children[1].setAttribute("id", `editar-${(parseInt(cont)+1)}`);
         }
     }
-
-    //Pegando o ID para excluir no Objeto e depois mostrar na tela
-
-
-
-
 }
 
 
