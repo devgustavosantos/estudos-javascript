@@ -1,48 +1,27 @@
-// var listaDeTafefas = {
-//     1: "Arrumar o quarto",
-//     2: "Cozinhar",
-//     3: "Codar"
-// }
-
 let listaDeTafefas;
 //Função para verificar se é a primeria utilização
 window.addEventListener("load", tarefasSalvas);
 
 function tarefasSalvas(){
-    
     if (localStorage.length == 0) {
         listaDeTafefas = {};
         console.log("Primeira utilização");
       
-      }else {
-        console.log("Lista já criada")
+    }else {
+        console.log("Lista já criada");
         listaDeTafefas = localStorage.getItem("lista");
-        listaDeTafefas = JSON.parse(listaDeTafefas)
+        listaDeTafefas = JSON.parse(listaDeTafefas);
         mostrarTarefas();
-         
-      }
-
+    }
 }
 
 function salvandoNaMemoria(listaParametro) {
     let listaString = JSON.stringify(listaParametro);
-    localStorage.setItem("lista", listaString)
-
-
+    localStorage.setItem("lista", listaString);
 }
-
-
-
-
-
-
-
-
-
 
 // Função para mostrar tarefa
 function mostrarTarefas(){
-
     //Bloco para limpar a tela antes de mostrar as tarefas
     let areaDasTarefas = document.getElementById("area-das-tarefas");
     areaDasTarefas.innerHTML = "";
@@ -73,9 +52,12 @@ function mostrarTarefas(){
         fundoIconeExcluir.classList.add("icone");
         itemTarefa.appendChild(fundoIconeExcluir);
 
+        
         let imagemExcluir = document.createElement("img");
         imagemExcluir.setAttribute("src", "icones/trash-free-icon-font.svg");
         fundoIconeExcluir.appendChild(imagemExcluir);
+        
+        fundoIconeExcluir.setAttribute("onclick", "excluirTarefa()")
     }
 }
 
@@ -85,9 +67,10 @@ botAdicionar.addEventListener('click', adicionar);
 
 let inputAdicionar = document.getElementById("txt_tarefa");
 inputAdicionar.addEventListener("keydown", function(evento) {
-    if (evento.key == "Enter")
-    adicionar();
-})
+    if (evento.key == "Enter"){
+        adicionar();
+    }
+});
 
 function adicionar() {
     // Recebendo a tarefa
@@ -99,7 +82,7 @@ function adicionar() {
     let vazia = false;
     if (txtTarefa.length == 0) {
         alert('A tarefa está vazia! Por favor verifique e digite novamente.');
-        vazia = true
+        vazia = true;
     }
 
     // Validando se é uma tarefa repetida
@@ -107,7 +90,7 @@ function adicionar() {
     for(let chave in listaDeTafefas) {
         if (txtTarefa.toUpperCase() == listaDeTafefas[chave].toUpperCase()) {
             alert('Essa tarefa já foi criada! Por favor digite outra.');
-        repetida = true;
+            repetida = true;
         } 
     } 
 
@@ -118,12 +101,30 @@ function adicionar() {
         console.log(listaDeTafefas);
         salvandoNaMemoria(listaDeTafefas);
         mostrarTarefas();
-
     }
 }
 
-
 // Função para excluir tarefa
+function excluirTarefa(){
+    //Loop para acessar os itens que estão aparecendo na tela e colocar id em cada um
+    let arrayDasTarefas =  document.getElementById("area-das-tarefas").children;
+    console.log(arrayDasTarefas)
+    for(let cont in arrayDasTarefas) {
+        //Condição para não modificar itens indesejados do array
+        if(cont < arrayDasTarefas.length){
+            let tempBotaoExcuir = arrayDasTarefas[cont];
+            //Colocando os ids nos botões excluir
+            tempBotaoExcuir.children[2].setAttribute("id", `excluir-${(parseInt(cont)+1)}`);
+        }
+    }
+
+    //Pegando o ID para excluir no Objeto e depois mostrar na tela
+
+
+
+
+}
+
 
 // Função para editar tarefa
 
