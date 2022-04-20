@@ -1,4 +1,5 @@
 let listaDeTafefas;
+let vetorDasTarefas = [];
 //Função para verificar se é a primeria utilização
 window.addEventListener("load", tarefasSalvas);
 
@@ -110,18 +111,65 @@ function adicionar() {
 function adicionarID(){
     //Loop para acessar os itens que estão aparecendo na tela e colocar id em cada um
     let arrayDasTarefas =  document.getElementById("area-das-tarefas").children;
-    console.log(arrayDasTarefas)
+    
     for(let cont in arrayDasTarefas) {
         //Condição para não modificar itens indesejados do array
         if(cont < arrayDasTarefas.length){
-            let tempBotaoExcuir = arrayDasTarefas[cont];
+            let tempBotao = arrayDasTarefas[cont];
             //Colocando os ids nos botões
-            tempBotaoExcuir.children[2].setAttribute("id", `excluir-${(parseInt(cont)+1)}`);
-            tempBotaoExcuir.children[1].setAttribute("id", `editar-${(parseInt(cont)+1)}`);
+            tempBotao.children[1].setAttribute("id", `editar-${(parseInt(cont)+1)}`);
+            tempBotao.children[2].setAttribute("id", `excluir-${(parseInt(cont)+1)}`);
         }
     }
+}
+
+//Função para colocar os itens na tela num array e adicionar o evento para e excluir
+function itensNoArrya() {
+   
+    let arrayDasTarefas =  document.getElementById("area-das-tarefas").children;
+    for (let cont in arrayDasTarefas) {
+        let itemAntesDoArray = arrayDasTarefas[cont]
+        
+        //Condição para não modificar itens indesejados do array
+        if(cont < arrayDasTarefas.length){
+            console.log(itemAntesDoArray.children[2])
+            vetorDasTarefas.push(itemAntesDoArray.children[2])
+        }
+    }
+
+    for(let cont in vetorDasTarefas) {
+        vetorDasTarefas[cont].addEventListener("click", mostrarConsole)
+    }
+
+}
+
+function mostrarConsole(evento) {
+   
+   
+   let idDoItemQueAtivou = evento.target.id
+    console.log(idDoItemQueAtivou)
 }
 
 
 // Função para editar tarefa
 
+
+
+
+
+
+/* 
+
+
+criar um laço para
+	colocar os itens no array
+	adiconar o evento a eles
+
+criar a funcão de excluir
+	pegar o id
+	excluir o começo do id
+	ir no objeto e apagar o item associado a ele
+	mostrar as tarefas na tela
+
+
+*/

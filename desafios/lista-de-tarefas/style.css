@@ -64,6 +64,7 @@ input::placeholder {
 }
 .icone img {
     width: 50%;
+    user-select: none;
 }
 
 #adicionar:hover {
