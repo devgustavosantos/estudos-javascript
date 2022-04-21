@@ -72,7 +72,7 @@ input::placeholder {
 }
 
 #templateTarefas{
-    display: none;
+    /* display: none; */
 }
 
 .tarefa{
@@ -99,6 +99,21 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.imagem-icone {
+    background-position: center;
+    background-attachment: scroll;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+.imagem-icone-lapis {
+    background-image: url('icones/pencil-free-icon-font.svg');
+}
+
+.imagem-icone-lixo {
+    background-image: url('icones/trash-free-icon-font.svg');
 }
 
 .icone:hover {

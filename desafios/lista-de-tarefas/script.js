@@ -42,22 +42,17 @@ function mostrarTarefas(){
         //Icone Editar
         let fundoIconeEditar = document.createElement("span");
         fundoIconeEditar.classList.add("icone");
+        fundoIconeEditar.classList.add("imagem-icone");
+        fundoIconeEditar.classList.add("imagem-icone-lapis");
         itemTarefa.appendChild(fundoIconeEditar);
-        
-        let imagemEditar = document.createElement("img");
-        imagemEditar.setAttribute("src", "icones/pencil-free-icon-font.svg");
-        fundoIconeEditar.appendChild(imagemEditar);
-
+       
         //Icone Excluir
         let fundoIconeExcluir = document.createElement("span");
         fundoIconeExcluir.classList.add("icone");
+        fundoIconeExcluir.classList.add("imagem-icone");
+        fundoIconeExcluir.classList.add("imagem-icone-lixo");
         itemTarefa.appendChild(fundoIconeExcluir);
 
-        
-        let imagemExcluir = document.createElement("img");
-        imagemExcluir.setAttribute("src", "icones/trash-free-icon-font.svg");
-        fundoIconeExcluir.appendChild(imagemExcluir);
-        
         // fundoIconeExcluir.setAttribute("onclick", "excluirTarefa()")
         adicionarID();
     }
