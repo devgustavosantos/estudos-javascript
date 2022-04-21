@@ -1,5 +1,6 @@
 let listaDeTafefas;
-let vetorDasTarefas = [];
+let botoesDeExcluir = [];
+let botoesDeEditar = [];
 //Função para verificar se é a primeria utilização
 window.addEventListener("load", tarefasSalvas);
 
@@ -53,9 +54,8 @@ function mostrarTarefas(){
         fundoIconeExcluir.classList.add("imagem-icone-lixo");
         itemTarefa.appendChild(fundoIconeExcluir);
 
-        // fundoIconeExcluir.setAttribute("onclick", "excluirTarefa()")
-        adicionarID();
     }
+    adicionarID();
     itensDaTelaNoArray();
 }
 
@@ -120,22 +120,26 @@ function adicionarID(){
 
 //Função para colocar os itens na tela num array e adicionar o evento para e excluir
 function itensDaTelaNoArray() {
-    vetorDasTarefas = [];
+    // vetorDasTarefas = [];
     let arrayDasTarefas =  document.getElementById("area-das-tarefas").children;
     for (let cont in arrayDasTarefas) {
-        let itemAntesDoArray = arrayDasTarefas[cont]
+        let itemAntesDoArray = arrayDasTarefas[cont];
         
         //Condição para não modificar itens indesejados do array
         if(cont < arrayDasTarefas.length){
             console.log(itemAntesDoArray.children[2]);
-            vetorDasTarefas.push(itemAntesDoArray.children[2]);
+            botoesDeExcluir.push(itemAntesDoArray.children[2]);
+            botoesDeEditar.push(itemAntesDoArray.children[1]);
         }
     }
 
-    for(let cont in vetorDasTarefas) {
-        vetorDasTarefas[cont].addEventListener("click", excluirTarefa);
+    for(let cont in botoesDeExcluir) {
+        botoesDeExcluir[cont].addEventListener("click", excluirTarefa);
     }
 
+    for(let cont in botoesDeEditar) {
+        botoesDeEditar[cont].addEventListener("click", editarTarefa);
+    }
 }
 
 // Função para excluir tarefa
@@ -145,8 +149,22 @@ function excluirTarefa(evento) {
     let exclusaoConfirmada = confirm(`Tem certeza que desaja excluir a tarefa ${listaDeTafefas[idDoItemQueAtivou]}`);
     if (exclusaoConfirmada) {
         listaDeTafefas.splice(idDoItemQueAtivou, 1);
+        salvandoNaMemoria(listaDeTafefas);
         mostrarTarefas();
     }
+}
+
+// Função para excluir tarefa
+function editarTarefa(evento) {
+    let idDoItemQueAtivou = evento.target.id;
+    idDoItemQueAtivou = parseInt(idDoItemQueAtivou.slice(7));
+    let novoValorDaTarefa = prompt("EDITAR TAREFA: Digite agora qual será o novo nome dessa tarefa");
+    listaDeTafefas[idDoItemQueAtivou] = novoValorDaTarefa;
+    salvandoNaMemoria(listaDeTafefas);
+    mostrarTarefas();
+
+    console.log(evento.target.id)
+    console.log(idDoItemQueAtivou)
 }
 
 

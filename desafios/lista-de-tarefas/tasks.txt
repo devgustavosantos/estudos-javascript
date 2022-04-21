@@ -1,0 +1,19 @@
+/*
+
+
+criar um laço para
+	-colocar os itens no array
+	-adiconar o evento a eles
+
+criar a funcão de excluir
+	-pegar o id
+	-excluir o começo do id
+	ir no objeto e apagar o item associado a ele
+	mostrar as tarefas na tela
+
+
+*/
+
+
+
+estou adiconando id ao elementos
