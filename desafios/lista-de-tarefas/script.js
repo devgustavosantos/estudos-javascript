@@ -5,7 +5,7 @@ window.addEventListener("load", tarefasSalvas);
 
 function tarefasSalvas(){
     if (localStorage.length == 0) {
-        listaDeTafefas = {};
+        listaDeTafefas = [];
         console.log("Primeira utilização");
       
     }else {
@@ -56,6 +56,7 @@ function mostrarTarefas(){
         // fundoIconeExcluir.setAttribute("onclick", "excluirTarefa()")
         adicionarID();
     }
+    itensDaTelaNoArray();
 }
 
 // Função para adicionar a tarefa
@@ -84,17 +85,16 @@ function adicionar() {
 
     // Validando se é uma tarefa repetida
     let repetida = false;
-    for(let chave in listaDeTafefas) {
-        if (txtTarefa.toUpperCase() == listaDeTafefas[chave].toUpperCase()) {
+    for(let cont in listaDeTafefas) {
+        if (txtTarefa.toUpperCase() == listaDeTafefas[cont].toUpperCase()) {
             alert('Essa tarefa já foi criada! Por favor digite outra.');
             repetida = true;
         } 
     } 
 
-    // Guardando a tarefa no objeto
+    // Guardando a tarefa no array
     if (repetida == false && vazia == false) {
-        let chaveDaTarefa = Object.keys(listaDeTafefas).length + 1;
-        listaDeTafefas[`${chaveDaTarefa}`] = txtTarefa;
+        listaDeTafefas.push(txtTarefa)
         console.log(listaDeTafefas);
         salvandoNaMemoria(listaDeTafefas);
         mostrarTarefas();
@@ -112,41 +112,44 @@ function adicionarID(){
         if(cont < arrayDasTarefas.length){
             let tempBotao = arrayDasTarefas[cont];
             //Colocando os ids nos botões
-            tempBotao.children[1].setAttribute("id", `editar-${(parseInt(cont)+1)}`);
-            tempBotao.children[2].setAttribute("id", `excluir-${(parseInt(cont)+1)}`);
+            tempBotao.children[1].setAttribute("id", `editar-${(parseInt(cont))}`);
+            tempBotao.children[2].setAttribute("id", `excluir-${(parseInt(cont))}`);
         }
     }
 }
 
 //Função para colocar os itens na tela num array e adicionar o evento para e excluir
-function itensNoArrya() {
-   
+function itensDaTelaNoArray() {
+    vetorDasTarefas = [];
     let arrayDasTarefas =  document.getElementById("area-das-tarefas").children;
     for (let cont in arrayDasTarefas) {
         let itemAntesDoArray = arrayDasTarefas[cont]
         
         //Condição para não modificar itens indesejados do array
         if(cont < arrayDasTarefas.length){
-            console.log(itemAntesDoArray.children[2])
-            vetorDasTarefas.push(itemAntesDoArray.children[2])
+            console.log(itemAntesDoArray.children[2]);
+            vetorDasTarefas.push(itemAntesDoArray.children[2]);
         }
     }
 
     for(let cont in vetorDasTarefas) {
-        vetorDasTarefas[cont].addEventListener("click", mostrarConsole)
+        vetorDasTarefas[cont].addEventListener("click", excluirTarefa);
     }
 
 }
 
-function mostrarConsole(evento) {
-   
-   
-   let idDoItemQueAtivou = evento.target.id
-    console.log(idDoItemQueAtivou)
+// Função para excluir tarefa
+function excluirTarefa(evento) {
+    let idDoItemQueAtivou = evento.target.id;
+    idDoItemQueAtivou = parseInt(idDoItemQueAtivou.slice(8));
+    let exclusaoConfirmada = confirm(`Tem certeza que desaja excluir a tarefa ${listaDeTafefas[idDoItemQueAtivou]}`);
+    if (exclusaoConfirmada) {
+        listaDeTafefas.splice(idDoItemQueAtivou, 1);
+        mostrarTarefas();
+    }
 }
 
 
-// Função para editar tarefa
 
 
 
