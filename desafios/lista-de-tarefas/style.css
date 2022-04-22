@@ -62,9 +62,16 @@ input::placeholder {
     justify-content: center;
     align-items: center;
 }
-.icone img {
-    width: 50%;
-    user-select: none;
+
+.imagem-icone {
+    background-position: center;
+    background-attachment: scroll;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+.imagem-icone-adicionar {
+    background-image: url('icones/plus-free-icon-font.svg');
 }
 
 #adicionar:hover {
@@ -100,12 +107,7 @@ input::placeholder {
     align-items: center;
 }
 
-.imagem-icone {
-    background-position: center;
-    background-attachment: scroll;
-    background-size: 50%;
-    background-repeat: no-repeat;
-}
+
 
 .imagem-icone-lapis {
     background-image: url('icones/pencil-free-icon-font.svg');
@@ -114,6 +116,8 @@ input::placeholder {
 .imagem-icone-lixo {
     background-image: url('icones/trash-free-icon-font.svg');
 }
+
+
 
 .icone:hover {
     cursor: pointer;

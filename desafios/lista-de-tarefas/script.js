@@ -168,6 +168,6 @@ function editarTarefa(evento) {
     salvandoNaMemoria(listaDeTafefas);
     mostrarTarefas();
 
-    console.log(evento.target.id)
-    console.log(idDoItemQueAtivou)
+    console.log(evento.target.id);
+    console.log(idDoItemQueAtivou);
 }
