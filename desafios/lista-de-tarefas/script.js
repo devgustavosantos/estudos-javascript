@@ -72,8 +72,8 @@ inputAdicionar.addEventListener("keydown", function(evento) {
 
 function adicionar() {
     // Recebendo a tarefa
-    let txtTarefa = document.getElementById('txt_tarefa');
-    txtTarefa = txtTarefa.value;
+    let elementoTarefa = document.getElementById('txt_tarefa');
+    let txtTarefa = elementoTarefa.value
     console.log(txtTarefa);
 
     //Validando se a tarefa está vazia
@@ -94,6 +94,7 @@ function adicionar() {
 
     // Guardando a tarefa no array
     if (repetida == false && vazia == false) {
+        elementoTarefa.value = ""
         listaDeTafefas.push(txtTarefa);
         console.log(listaDeTafefas);
         salvandoNaMemoria(listaDeTafefas);
