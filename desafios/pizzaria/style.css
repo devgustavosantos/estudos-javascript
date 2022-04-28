@@ -31,6 +31,7 @@ h3 {
 
 .container-pizza {
     max-width: 230px;
+    padding: 1.5rem;
     margin: 1rem 2rem;
     display: inline-block;
     
@@ -40,15 +41,22 @@ h3 {
     cursor: pointer;
 }
 
-.foto-pizza {
-    background-image: url(images/pizza.png);
-    background-size: 102%;
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: 230px;
+.container-foto-pizza {
     width: 100%;
+    max-height: 182px;
+    overflow: hidden;
     box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 50%);
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foto-pizza {
+    /* Usei 104% para esconder as rebarbas das foto */
+    width: 104%;
+    object-fit: contain;
+    
 }
 
 .itens-pizza {
@@ -69,4 +77,12 @@ h3 {
     border-radius: 50%;
     width: 50px;
     height: 50px;
+    transition: all linear 0.2s;
+}
+
+
+.icone-adicionar-novo{
+    background-color: #244C88;
+    transition: all linear 0.2s;
+
 }
